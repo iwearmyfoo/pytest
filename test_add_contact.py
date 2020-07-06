@@ -15,7 +15,6 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/index.php")
         self.login(wd, login="admin", password="secret")
         self.add_contact(wd, Contact("john", "cena", "osina", "vasya", "title", "company", "address", "6666", "7777", "8888",
                          "9999", "a@a.com", "s@s.com", "d@d.com", "f.ru", "1", "January", "2000", "1", "January",
@@ -61,7 +60,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_link_text("Logout").click()
 
     def login(self, wd, login, password):
-
+        wd.get("http://localhost/addressbook/index.php")
         wd.find_element_by_name("user").send_keys(login)
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
