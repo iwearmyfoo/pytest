@@ -14,14 +14,14 @@ class TestAddContact(unittest.TestCase):
         self.accept_next_alert = True
 
     def test_add_contact(self):
-        wd = self.wd
-        self.login(wd, login="admin", password="secret")
-        self.add_contact(wd, Contact("john", "cena", "osina", "vasya", "title", "company", "address", "6666", "7777", "8888",
+        self.login(login="admin", password="secret")
+        self.add_contact(Contact("john", "cena", "osina", "vasya", "title", "company", "address", "6666", "7777", "8888",
                          "9999", "a@a.com", "s@s.com", "d@d.com", "f.ru", "1", "January", "2000", "1", "January",
                          "2010", "2", "g.ru", "tones"))
-        self.logout(wd)
+        self.logout()
 
-    def add_contact(self, wd, contact):
+    def add_contact(self, contact):
+        wd = self.wd
         # open contact page
         wd.find_element_by_link_text("add new").click()
         # fill contact page
@@ -56,16 +56,18 @@ class TestAddContact(unittest.TestCase):
         # apply contact data
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def login(self, wd, login, password):
+    def login(self, login, password):
+        wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
         wd.find_element_by_name("user").send_keys(login)
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-        def tearDown(self):
-            self.wd.quit()
-            self.assertEqual([], self.verificationErrors)
+    def tearDown(self):
+        self.wd.quit()
+        self.assertEqual([], self.verificationErrors)
 
