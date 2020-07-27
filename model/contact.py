@@ -1,9 +1,10 @@
 class Contact:
 
-    def __init__(self,  fistname, midname, lastname, nickname, title, company, address, homephone,
-                 mobilephone, workphone, faxphone, firstmail, secondmail, thirdmail, homepage, bday,
-                 bmonth, byear, aday, amonth, ayear, secondaryaddress, additionalphone, notes):
-        self.fistname = fistname
+    def __init__(self,  firstname=None, midname=None, lastname=None, nickname=None, title=None, company=None,
+                 address=None, homephone=None, mobilephone=None, workphone=None, faxphone=None, firstmail=None,
+                 secondmail=None, thirdmail=None, homepage=None, bday=None, bmonth=None, byear=None, aday=None,
+                 amonth=None, ayear=None, secondaryaddress=None, additionalphone=None, notes=None, name=None, id=None):
+        self.firstname = firstname
         self.midname = midname
         self.lastname = lastname
         self.nickname = nickname
@@ -27,8 +28,11 @@ class Contact:
         self.secondaryaddress = secondaryaddress
         self.additionalphone = additionalphone
         self.notes = notes
+        self.name = name
+        self.id = id
 
-
+    def __repr__(self):
+        return "%s:%s" % (self.id, self.name)
 
 
 
